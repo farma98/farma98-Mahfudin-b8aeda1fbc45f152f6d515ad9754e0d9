@@ -183,7 +183,7 @@ include('../back-end/ajax_timestamp.php')
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <script src="datatables-demo.js"></script>
-    <script src="../back-end/jam_digital.js"></script>
+    <script src="jam_digital.js"></script>
 </body>
 
 </html>
