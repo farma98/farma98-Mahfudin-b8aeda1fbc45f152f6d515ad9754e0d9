@@ -1,5 +1,6 @@
 <?php
-include('back-end/tampil_data.php');
+include('../back-end/tampil_data.php');
+include('../back-end/ajax_timestamp.php')
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +13,7 @@ include('back-end/tampil_data.php');
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Dashboard</title>
-    <link href="front-end/styles.css" rel="stylesheet" />
+    <link href="styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous">
     </script>
@@ -42,7 +43,7 @@ include('back-end/tampil_data.php');
                     ?>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="back-end/logout.php">Logout</a>
+                    <a class="dropdown-item" href="../back-end/logout.php">Logout</a>
                 </div>
             </li>
         </ul>
@@ -181,8 +182,8 @@ include('back-end/tampil_data.php');
     <script src="scripts.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-    <script src="front-end/datatables-demo.js"></script>
-    <script src="front-end/jam_digital.js"></script>
+    <script src="datatables-demo.js"></script>
+    <script src="../back-end/jam_digital.js"></script>
 </body>
 
 </html>

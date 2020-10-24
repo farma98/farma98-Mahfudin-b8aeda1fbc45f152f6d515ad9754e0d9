@@ -1,5 +1,5 @@
 <?php
-include('back-end/proses_login.php');
+include('../back-end/proses_login.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +55,7 @@ include('back-end/proses_login.php');
 
 								</div>
 								<div class="card-footer text-center">
-									<div class="small"><a href="front-end/register.php">Belum Punya Account?</a></div>
+									<div class="small"><a href="register.php">Belum Punya Account?</a></div>
 								</div>
 							</div>
 						</div>
@@ -81,8 +81,8 @@ include('back-end/proses_login.php');
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous">
 	</script>
-	<script src="front-end/scripts.js"></script>
-	<script src="front-end/validasi_login.js"></script>
+	<script src="scripts.js"></script>
+	<script src="validasi_login.js"></script>
 </body>
 
 </html>

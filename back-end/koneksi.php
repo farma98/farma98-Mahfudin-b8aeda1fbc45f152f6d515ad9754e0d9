@@ -28,8 +28,8 @@ class database
 			$data_user = $query->fetch_array();
 			if (password_verify($password, $data_user['password'])) {
 				if ($remember) {
-					setcookie('username', $username, time() + (60 * 60 * 24 * 5), '/');
-					setcookie('nama', $data_user['nama'], time() + (60 * 60 * 24 * 5), '/');
+					setcookie('username', $username, time() + (60), '/');
+					setcookie('nama', $data_user['nama'], time() + (60), '/');
 				}
 
 				$_SESSION['username'] = $username;
