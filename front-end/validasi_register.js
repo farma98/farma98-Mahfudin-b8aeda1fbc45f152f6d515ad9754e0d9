@@ -37,12 +37,6 @@ function Validate() {
         password_error.textContent = "Password Is Required";
         password.focus();
         return false;
-    } else if (password.value != passwordQ.value) {
-        password.style.border = "1px solid red";
-        document.getElementById('password_div').style.color = "red";
-        password_error.textContent = "Do not Match Password";
-        password.focus();
-        return false;
     }
 
     // validate password

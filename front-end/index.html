@@ -1,6 +1,3 @@
-<?php
-include('../back-end/proses_login.php');
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,33 +26,39 @@ include('../back-end/proses_login.php');
 								</div>
 								<div class="card-body">
 
-									<form method="post" action="" role="form" onsubmit="return Validate()" name="vform">
+									<form method="post" action="../back-end/proses_login.php" role="form"
+										onsubmit="return Validate()" name="vform">
 										<div class="form-group" id="username_div">
 											<label class="small mb-1" for="username">Username</label>
-											<input class="form-control py-4" name="username" id="username" type="text" placeholder="Username" />
+											<input class="form-control py-4" name="username" id="username" type="text"
+												placeholder="Username" />
 											<div id="username_error"></div>
 										</div>
 										<div class="form-group" id="password_div">
 											<label class="small mb-1" for="password">Password</label>
-											<input class="form-control py-4" name="password" id="password" type="password" placeholder="Password" />
+											<input class="form-control py-4" name="password" id="password"
+												type="password" placeholder="Password" />
 											<div id="password_error"></div>
 										</div>
 										<div class="form-group">
 											<div class="custom-control custom-checkbox">
-												<input class="custom-control-input" name="remember" id="remember" type="checkbox" />
+												<input class="custom-control-input" name="remember" id="remember"
+													type="checkbox" />
 												<label class="custom-control-label" for="remember">Remember
 													password</label>
 											</div>
 										</div>
-										<div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+										<div
+											class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
 											<a class="small" href="#">Lupa Password?</a>
-											<button class="btn btn-primary" type="submit" name="login">Login</button>
+											<button class="btn btn-primary" type="submit" name="login"
+												id="login">Login</button>
 										</div>
 									</form>
 
 								</div>
 								<div class="card-footer text-center">
-									<div class="small"><a href="register.php">Belum Punya Account?</a></div>
+									<div class="small"><a href="register.html">Belum Punya Account?</a></div>
 								</div>
 							</div>
 						</div>

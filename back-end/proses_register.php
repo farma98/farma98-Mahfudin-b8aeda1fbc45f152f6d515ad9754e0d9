@@ -7,7 +7,7 @@ if (isset($_POST['register'])) {
     $nama = $_POST['nama'];
     if ($database->register($username, $password, $nama)) {
         echo "<script type='text/javascript'>alert('Berhasil Register, Silahkan Login!');
-	    window.location='index.php';
+	    window.location='../front-end/index.html';
 	    </script>";
     }
 }

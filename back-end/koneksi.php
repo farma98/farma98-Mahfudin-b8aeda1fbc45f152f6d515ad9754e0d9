@@ -28,9 +28,12 @@ class database
 			$data_user = $query->fetch_array();
 			if (password_verify($password, $data_user['password'])) {
 				if ($remember) {
-					setcookie('username', $username, time() + (60), '/');
-					setcookie('nama', $data_user['nama'], time() + (60), '/');
+					setcookie('username', $username, time() + (60 * 60), '/');
+					setcookie('nama', $data_user['nama'], time() + (60 * 60), '/');
 				}
+
+				$waktu = date('d-m-Y H:i:s');
+				mysqli_query($this->koneksi, "update tbl_user set loginTime='$waktu' where username ='$username'");
 
 				$_SESSION['username'] = $username;
 				$_SESSION['nama'] = $data_user['nama'];
@@ -46,12 +49,6 @@ class database
 		}
 	}
 
-	function update_data($waktu, $username)
-	{
-		$waktu = date('d-m-Y H:i:s');
-		mysqli_query($this->koneksi, "update tbl_user set loginTime='$waktu' where username ='$username'");
-	}
-
 	function relogin($username)
 	{
 		$query = mysqli_query($this->koneksi, "select * from tbl_user where username='$username'");
@@ -61,12 +58,48 @@ class database
 		$_SESSION['is_login'] = TRUE;
 	}
 
-	function tampil_data()
+	function search_data()
 	{
-		$data = mysqli_query($this->koneksi, "select * from tbl_user");
-		while ($row = mysqli_fetch_array($data)) {
-			$hasil[] = $row;
-		}
-		return $hasil;
+		$search = $_POST['search']['value']; // Ambil data yang di ketik user pada textbox pencarian
+		$limit = $_POST['length']; // Ambil data limit per page
+		$start = $_POST['start']; // Ambil data start
+
+		$data = mysqli_query($this->koneksi, "select username from tbl_user");
+		$datacount = mysqli_num_rows($data); // Hitung data yg ada pada query $sql
+		$query = "SELECT * FROM tbl_user WHERE (username LIKE '%" . $search . "%' OR nama LIKE '%" . $search . "%')";
+
+		$order_index = $_POST['order'][0]['column']; // Untuk mengambil index yg menjadi acuan untuk sorting
+		$order_field = $_POST['columns'][$order_index]['data']; // Untuk mengambil nama field yg menjadi acuan untuk sorting
+		$order_ascdesc = $_POST['order'][0]['dir']; // Untuk menentukan order by "ASC" atau "DESC"
+		$order = " ORDER BY " . $order_field . " " . $order_ascdesc;
+
+		$sql_data = mysqli_query($this->koneksi, $query . $order . " LIMIT " . $limit . " OFFSET " . $start); // Query untuk data yang akan di tampilkan
+		$sql_filter = mysqli_query($this->koneksi, $query); // Query untuk count jumlah data sesuai dengan filter pada textbox pencarian
+
+		$sql_filter_count = mysqli_num_rows($sql_filter); // Hitung data yg ada pada query $sql_filter
+		$data = mysqli_fetch_all($sql_data, MYSQLI_ASSOC); // Untuk mengambil data hasil query menjadi array
+		$callback = array(
+			'draw' => $_POST['draw'], // Ini dari datatablenya
+			'recordsTotal' => $datacount,
+			'recordsFiltered' => $sql_filter_count,
+			'data' => $data
+		);
+		header('Content-Type: application/json');
+		echo json_encode($callback); // Convert array $callback ke json
 	}
+
+	// function update_data($waktu, $username)
+	// {
+	// 	$waktu = date('d-m-Y H:i:s');
+	// 	mysqli_query($this->koneksi, "update tbl_user set loginTime='$waktu' where username ='$username'");
+	// }
+
+	// function tampil_data()
+	// {
+	// 	$data = mysqli_query($this->koneksi, "select * from tbl_user");
+	// 	while ($row = mysqli_fetch_array($data)) {
+	// 		$hasil[] = $row;
+	// 	}
+	// 	return $hasil;
+	// }
 }

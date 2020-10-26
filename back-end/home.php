@@ -1,6 +1,8 @@
 <?php
-include('../back-end/tampil_data.php');
-include('../back-end/ajax_timestamp.php')
+session_start();
+if (!isset($_SESSION['is_login'])) {
+    header('location: index.html');
+}
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +15,7 @@ include('../back-end/ajax_timestamp.php')
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Dashboard</title>
-    <link href="styles.css" rel="stylesheet" />
+    <link href="../front-end/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous">
     </script>
@@ -30,6 +32,9 @@ include('../back-end/ajax_timestamp.php')
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
                     <button class="btn btn-danger" type="button" id="timestamp"></button>
+                    <button class="btn btn-warning" type="button">
+                        <?php echo $_SESSION['username']; ?>
+                    </button>
                 </div>
             </div>
         </form>
@@ -38,9 +43,6 @@ include('../back-end/ajax_timestamp.php')
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-user fa-fw"></i>
-                    <?php
-                    echo $_SESSION['username'];
-                    ?>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                     <a class="dropdown-item" href="../back-end/logout.php">Logout</a>
@@ -120,40 +122,26 @@ include('../back-end/ajax_timestamp.php')
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Name</th>
+                                            <th>ID User</th>
+                                            <th>Nama</th>
                                             <th>Username</th>
                                             <th>Password</th>
+                                            <th>Login Time</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Name</th>
+                                            <th>ID User</th>
+                                            <th>Nama</th>
                                             <th>Username</th>
                                             <th>Password</th>
+                                            <th>Login Time</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <?php
-                                        $no = 1;
-                                        foreach ($data as $row) {
-                                        ?>
-                                            <tr>
-                                                <td><?php echo $no++; ?></td>
-                                                <td><?php echo $row['nama']; ?></td>
-                                                <td><?php echo $row['username']; ?></td>
-                                                <td><?php echo $row['password']; ?></td>
-                                                <td>
-                                                    <a href="#" class="btn btn-primary btn-flat btn-xs" data-toggle="modal" data-target="#updateuser<?php echo $no; ?>"><i class="fa fa-edit"></i> Edit</a>
-                                                    <a href="#" class="btn btn-danger btn-flat btn-xs" data-toggle="modal" data-target="#deleteuser<?php echo $no; ?>"><i class="fa fa-trash"></i> Delete</a>
-                                                </td>
-                                            </tr>
-                                        <?php
-                                        }
-                                        ?>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -179,11 +167,11 @@ include('../back-end/ajax_timestamp.php')
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>
-    <script src="scripts.js"></script>
+    <script src="../front-end/scripts.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-    <script src="datatables-demo.js"></script>
-    <script src="jam_digital.js"></script>
+    <script src="../front-end/jam_digital.js"></script>
+    <script src="../front-end/tampil_data.js"></script>
 </body>
 
 </html>
