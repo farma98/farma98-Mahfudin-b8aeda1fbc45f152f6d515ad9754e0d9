@@ -129,9 +129,9 @@ $waktu = $_SESSION['waktu'];
                                     <thead>
                                         <tr>
                                             <th>ID User</th>
-                                            <th>Nama</th>
                                             <th>Username</th>
                                             <th>Password</th>
+                                            <th>Name</th>
                                             <th>Login Time</th>
                                             <th>Action</th>
                                         </tr>
@@ -139,9 +139,9 @@ $waktu = $_SESSION['waktu'];
                                     <tfoot>
                                         <tr>
                                             <th>ID User</th>
-                                            <th>Nama</th>
                                             <th>Username</th>
                                             <th>Password</th>
+                                            <th>Name</th>
                                             <th>Login Time</th>
                                             <th>Action</th>
                                         </tr>

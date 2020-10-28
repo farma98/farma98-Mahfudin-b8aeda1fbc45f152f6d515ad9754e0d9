@@ -39,7 +39,7 @@ class database
 				$waktu = date('yyyy-mm-dd H:i:s');
 				$_SESSION['waktu'] = $waktu;
 
-				$insert = mysqli_query($this->koneksi, "UPDATE tbl_user SET loginTime = $waktu WHERE username ='$username'");
+				$insert = mysqli_query($this->koneksi, "UPDATE tbl_user SET loginTime = NOW() WHERE username ='$username'");
 				return $insert;
 			} else {
 				echo "<script>alert('Password Salah!');history.go(-1);</script>";
