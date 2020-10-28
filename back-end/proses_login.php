@@ -14,7 +14,10 @@ if (isset($_POST['login'])) {
     }
 
     if ($database->login($username, $password, $remember)) {
-        $usernameQ = $_SESSION['nama'];
+        date_default_timezone_set('Asia/Jakarta');
+        $waktu = date('yyyy-mm-dd H:i:s');
+        $_SESSION['waktu'] = $waktu;
+        $usernameQ = $_SESSION['username'];
 
         echo "<script type='text/javascript'>
 		alert('Selamat Datang $usernameQ');
@@ -24,7 +27,10 @@ if (isset($_POST['login'])) {
 }
 
 if (isset($_SESSION['is_login'])) {
-    $usernameQ = $_SESSION['nama'];
+    date_default_timezone_set('Asia/Jakarta');
+    $waktu = date('yyyy-mm-dd H:i:s');
+    $_SESSION['waktu'] = $waktu;
+    $usernameQ = $_SESSION['username'];
 
     echo "<script type='text/javascript'>
 	alert('Selamat Datang $usernameQ');
@@ -34,7 +40,10 @@ if (isset($_SESSION['is_login'])) {
 
 if (isset($_COOKIE['username'])) {
     $database->relogin($_COOKIE['username']);
-    $usernameQ = $_SESSION['nama'];
+    date_default_timezone_set('Asia/Jakarta');
+    $waktu = date('yyyy-mm-dd H:i:s');
+    $_SESSION['waktu'] = $waktu;
+    $usernameQ = $_SESSION['username'];
 
     echo "<script type='text/javascript'>
 	alert('Selamat Datang $usernameQ');

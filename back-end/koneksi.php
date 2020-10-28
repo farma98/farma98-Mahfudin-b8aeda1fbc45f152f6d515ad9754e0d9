@@ -31,14 +31,16 @@ class database
 					setcookie('username', $username, time() + (60 * 60), '/');
 					setcookie('nama', $data_user['nama'], time() + (60 * 60), '/');
 				}
-
-				$waktu = date('d-m-Y H:i:s');
-				mysqli_query($this->koneksi, "update tbl_user set loginTime='$waktu' where username ='$username'");
-
 				$_SESSION['username'] = $username;
 				$_SESSION['nama'] = $data_user['nama'];
 				$_SESSION['is_login'] = TRUE;
-				return TRUE;
+
+				// update waktu saat login
+				$waktu = date('yyyy-mm-dd H:i:s');
+				$_SESSION['waktu'] = $waktu;
+
+				$insert = mysqli_query($this->koneksi, "UPDATE tbl_user SET loginTime = $waktu WHERE username ='$username'");
+				return $insert;
 			} else {
 				echo "<script>alert('Password Salah!');history.go(-1);</script>";
 				exit;
@@ -88,11 +90,13 @@ class database
 		echo json_encode($callback); // Convert array $callback ke json
 	}
 
-	// function update_data($waktu, $username)
-	// {
-	// 	$waktu = date('d-m-Y H:i:s');
-	// 	mysqli_query($this->koneksi, "update tbl_user set loginTime='$waktu' where username ='$username'");
-	// }
+	function update_data()
+	{
+		date_default_timezone_set('Asia/Jakarta');
+		$waktu = date('d-m-Y H:i:s');
+		$data = mysqli_query($this->koneksi, "update tbl_user set loginTime='$waktu'");
+		return $data;
+	}
 
 	// function tampil_data()
 	// {

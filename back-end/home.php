@@ -1,8 +1,14 @@
 <?php
 session_start();
+include_once('koneksi.php');
+$database = new database();
+
 if (!isset($_SESSION['is_login'])) {
     header('location: index.html');
 }
+
+$username = $_SESSION['username'];
+$waktu = $_SESSION['waktu'];
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +39,7 @@ if (!isset($_SESSION['is_login'])) {
                     <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
                     <button class="btn btn-danger" type="button" id="timestamp"></button>
                     <button class="btn btn-warning" type="button">
-                        <?php echo $_SESSION['username']; ?>
+                        <?php echo $username; ?>
                     </button>
                 </div>
             </div>
